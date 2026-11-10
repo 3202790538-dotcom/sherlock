@@ -1,0 +1,134 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sherlock · 发现数字足迹</title><style>
+
+:root{color-scheme:dark;--bg:#0c1017;--panel:#141b25;--line:#26303d;--muted:#8c9aaf;--green:#a9ebbf}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#edf1f7;font:14px -apple-system,BlinkMacSystemFont,'PingFang SC',sans-serif}button,input,select{font:inherit}button,a,input,select{outline-offset:4px}button{cursor:pointer}aside{width:220px;position:fixed;inset:0 auto 0 0;padding:36px 25px;border-right:1px solid var(--line);background:#0f141d}.brand{font-size:23px;font-weight:750;letter-spacing:2px}.mark{display:inline-grid;place-items:center;width:35px;height:35px;background:var(--green);color:#15251b;border-radius:12px;margin-right:9px;font-size:24px}.small{font-size:11px;letter-spacing:2px;color:var(--muted)}.nav{margin-top:55px;background:#202e2b;color:var(--green);padding:15px;border-radius:10px}.asidefoot{position:absolute;bottom:30px;color:var(--muted);line-height:1.9;font-size:12px}main{max-width:1400px;margin-left:220px;padding:35px 55px}.top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}.badge{border:1px solid var(--line);padding:8px 12px;border-radius:20px}.dot{color:var(--green)}.hero{padding:53px 0 30px}.eyebrow{color:var(--green);font-size:11px;letter-spacing:3px}h1{font-size:43px;letter-spacing:-1.5px;margin:14px 0}p{color:var(--muted);line-height:1.8}.searchbox{border:1px solid #34453f;background:linear-gradient(120deg,#192a27,#171e29);border-radius:18px;padding:26px}.searchbox label{display:block;font-size:12px;margin-bottom:12px;color:#b6c9c2}.searchrow{display:flex;gap:12px}input{min-width:0;flex:1;background:#0d151b;border:1px solid #38463f;border-radius:10px;color:white;padding:17px;font-size:16px}button{border:1px solid var(--line);border-radius:9px;background:#1a2330;color:#e9edf3;padding:12px 18px}.primary{background:var(--green);color:#14251b;font-weight:700;border:0;padding:0 28px}button:disabled{opacity:.4;cursor:default}.options{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:12px;margin-top:16px}select{background:#111a23;color:#b9c4d3;border:1px solid var(--line);padding:7px;border-radius:6px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:22px 0}.stat{border:1px solid var(--line);border-radius:13px;background:var(--panel);padding:20px}.num{font-size:30px;margin-top:10px;font-weight:600}.num.green{color:var(--green)}.bar{height:3px;background:#25303b;border-radius:5px;margin-top:20px;overflow:hidden}.bar div{height:100%;width:0;background:var(--green);transition:width .4s}.toolbar{display:flex;align-items:center;justify-content:space-between;margin:32px 0 18px;gap:12px}.tabs{display:flex;gap:5px}.tabs button{padding:8px 13px;background:transparent;border-color:transparent;color:var(--muted)}.tabs button.active{background:#253a32;color:var(--green)}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:13px}.card{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:20px;animation:appear .25s}.cardhead{display:flex;justify-content:space-between;gap:10px}.icon{display:grid;place-items:center;width:38px;height:38px;background:#253132;border-radius:11px;color:var(--green);font-weight:bold}.status{font-size:11px;color:var(--muted)}.found{color:var(--green)}.card h3{font-size:16px;margin:16px 0 7px}.card p{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0}.card a{display:block;color:var(--green);text-decoration:none;margin-top:20px;font-size:12px}.empty{grid-column:1/-1;text-align:center;padding:54px 20px;border:1px dashed var(--line);border-radius:13px}.empty .glass{font-size:35px;color:var(--green)}#message{color:#edbb87;margin-top:12px;white-space:pre-wrap}.foot{font-size:11px;color:#68778b;margin:28px 0}.spin{animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.35}}@keyframes appear{from{opacity:0;transform:translateY(5px)}}@media(max-width:850px){aside{display:none}main{margin:0;padding:25px}h1{font-size:34px}.hero{padding-top:35px}}@media(max-width:520px){.searchrow{flex-wrap:wrap}.primary{padding:15px}.stats{gap:8px}.stat{padding:13px}.toolbar{flex-wrap:wrap}.options{flex-wrap:wrap}}
+
+/* Compact black result list */
+.cards{display:flex;flex-direction:column;gap:0;background:#000;border:1px solid #242424;border-radius:12px;overflow:hidden}
+.card{display:grid;grid-template-columns:minmax(160px,1fr) minmax(180px,2fr) 110px;align-items:center;gap:20px;background:#000;border:0;border-bottom:1px solid #242424;border-radius:0;padding:17px 22px;position:relative}
+.card:last-child{border-bottom:0}.card:hover{background:#0a0a0a}.cardhead{display:contents}.card .icon{display:none}.card .status{grid-column:3;grid-row:1;font-size:12px;text-align:right}.card h3{grid-column:1;grid-row:1;margin:0;font-size:14px}.card p{grid-column:2;grid-row:1;margin:0}.card a{grid-column:2;grid-row:2;margin:0;font-size:12px}.card:has(a){row-gap:8px}.empty{background:#000;border:0;border-radius:0}
+@media(max-width:600px){.card{grid-template-columns:minmax(0,1fr) 100px;gap:10px;padding:16px}.card .status{grid-column:2}.card p{grid-column:1/-1;grid-row:2}.card a{grid-column:1/-1;grid-row:3}}
+
+/* Unified compact workspace */
+:root{--bg:#000;--panel:#090909;--line:#242424;--muted:#8a9390;--green:#a9ebbf}
+body{background:#000}aside{width:190px;padding:28px 20px;background:#050505;border-color:#222}.brand{font-size:19px;letter-spacing:1px;display:flex;align-items:center}.mark{flex-shrink:0;width:30px;height:30px;font-size:22px;border-radius:8px}.small{letter-spacing:1px}.brand+.small{margin-left:0!important;font-size:9px;white-space:nowrap}.nav{margin-top:35px;padding:12px;background:#122219;border:1px solid #23382b}.asidefoot{font-size:11px}
+main{margin-left:190px;padding:25px 38px;max-width:1600px}.top{font-size:11px}.badge{padding:6px 10px}.hero{padding:30px 0 18px}.eyebrow{font-size:10px;letter-spacing:2px}h1{font-size:32px;margin:10px 0;letter-spacing:-.8px}.hero p{margin:0;font-size:13px}.searchbox{background:#080b09;border:1px solid #2b3b30;border-radius:12px;padding:20px}.searchbox label{margin-bottom:9px}.searchrow{gap:8px}input{padding:12px 14px;font-size:14px;background:#000;border-color:#303a33;border-radius:7px}.primary{padding:0 22px}button{border-radius:7px;padding:9px 14px}.options{margin-top:11px;gap:10px;font-size:11px}.options select{padding:4px 7px;background:#080808}.bar{margin-top:14px;height:2px}.stats{gap:12px;margin:16px 0}.stat{padding:14px 18px;border-radius:9px;background:#080808}.num{font-size:25px;margin-top:7px}.stat:last-child .num{font-size:16px!important;margin-top:13px!important}.toolbar{margin:22px 0 10px}.tabs button{font-size:12px;padding:7px 11px}.tabs button.active{background:#15271b}.toolbar>button{font-size:12px}.cards{border-radius:8px}
+.card{grid-template-columns:minmax(130px,.8fr) minmax(0,2fr) 100px 76px;gap:16px;padding:10px 16px;min-height:43px;animation:none}.card:has(a){row-gap:0}.card h3{font-size:13px;font-weight:550;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.card p{font-size:12px;color:#828b85}.card .status{grid-column:3;grid-row:1;font-size:11px;white-space:nowrap}.card a{grid-column:4;grid-row:1;margin:0;font-size:11px;text-align:right;white-space:nowrap}.empty{padding:35px 20px}.empty h3{font-size:14px}.empty p{font-size:12px}.empty .glass{font-size:28px}.foot{margin:16px 0;font-size:11px;line-height:1.7}button:hover:not(:disabled){filter:brightness(1.15)}input:focus{outline:2px solid #5e9870;outline-offset:1px}
+@media(max-width:850px){aside{display:none}main{margin:0;padding:22px}.hero{padding-top:24px}}
+@media(max-width:600px){main{padding:16px}.hero h1{font-size:27px}.stat{padding:12px}.searchbox{padding:15px}.primary{padding:12px 18px}.card{grid-template-columns:minmax(90px,1fr) 85px 70px;gap:8px;padding:10px 12px;min-height:40px}.card h3{grid-column:1;grid-row:1}.card .status{grid-column:2;grid-row:1}.card a{grid-column:3;grid-row:1}.card p{display:none}.toolbar{gap:8px}.tabs{gap:0}.tabs button{padding:7px 8px;font-size:11px}.badge{font-size:9px}}
+
+/* China coverage and compact helper links */
+.options{flex-wrap:wrap}.options .scope-label{color:#b6c9c2}.coverage-note{margin-top:10px;font-size:11px;line-height:1.7;color:var(--muted)}
+.toolbar-actions{display:flex;align-items:center;gap:8px}.toolbar-actions select{font-size:11px;background:#080808;padding:7px 9px}.toolbar-actions button{font-size:12px}
+.region-tag{display:inline-block;color:#a2b4a8;background:#122018;border:1px solid #22382a;border-radius:3px;font-size:9px;font-weight:400;padding:1px 4px;margin-left:7px;vertical-align:1px;letter-spacing:0}
+.manual-search{margin:12px 0 16px;padding:13px 15px;border:1px solid var(--line);border-radius:8px;background:#050505}.manual-search[hidden]{display:none}.manual-search h2{font-size:12px;font-weight:550;margin:0 0 5px}.manual-search p{font-size:11px;margin:0;color:var(--muted)}.manual-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.manual-links a{font-size:11px;color:var(--green);border:1px solid #253a2c;border-radius:5px;padding:5px 9px;text-decoration:none}.manual-links a:hover{background:#122018}
+@media(max-width:600px){.toolbar-actions{width:100%;justify-content:space-between}.region-tag{font-size:8px;margin-left:4px;padding:1px 3px}.coverage-note{font-size:10px}}
+</style><aside><div class="brand"><span class="mark">⌕</span>SHERLOCK</div><div class="small" style="margin:14px 0 0 47px">DIGITAL EXPLORER</div><div class="nav">⌕ &nbsp; 账号探索</div><div class="asidefoot"><span class="dot">●</span> 本地运行 · 直连目标网站<br>Sherlock / 0.16.2</div></aside><main><div class="top"><span>工作空间 / 账号探索</span><span class="badge"><span class="dot">●</span> LOCAL WORKSPACE</span></div><section class="hero"><div class="eyebrow">FOLLOW THE DIGITAL TRAIL</div><h1>一个名字，发现更多。</h1><p>从一个用户名出发，探索散落在不同平台的公开账号。</p></section><form class="searchbox" id="form"><label for="username">想探索哪个用户名？</label><div class="searchrow"><input id="username" placeholder="输入用户名，例如 johndoe" maxlength="100" required autocomplete="off"><button class="primary" id="start">开始探索 &nbsp; ↗</button><button type="button" id="stop" disabled>停止</button></div><div class="options"><span class="scope-label">搜索范围</span><select id="scope" aria-label="搜索范围"><option value="all">全球 + 中国网站</option><option value="china">仅中国／中文网站</option></select><span>单站超时</span><select id="timeout" aria-label="单站超时"><option value="15">15 秒</option><option value="30">30 秒</option><option value="60">60 秒</option></select><span>默认排除成人站点</span></div><div class="coverage-note" id="coverage">国内平台按账号 ID 或主页标识检测，昵称不一定等于用户名。</div><div id="message" role="alert"></div><div class="bar"><div id="progress"></div></div></form><section class="stats"><div class="stat"><span class="small">已检测平台</span><div class="num" id="checked">0 <small style="font-size:13px;color:var(--muted)" id="total">/ —</small></div></div><div class="stat"><span class="small">发现的账号</span><div class="num green" id="found">0</div></div><div class="stat"><span class="small">探索状态</span><div class="num" style="font-size:20px;margin-top:18px" id="status">准备就绪</div></div></section><div class="toolbar"><div class="tabs"><button class="active" data-filter="found">发现的账号</button><button data-filter="all">全部结果</button><button data-filter="error">连接异常</button></div><div class="toolbar-actions"><select id="region" aria-label="筛选结果地区"><option value="all">全部地区</option><option value="china">中国／中文网站</option></select><button id="export" disabled>↓ &nbsp; 导出 Excel</button></div></div><div class="cards" id="cards"></div><section class="manual-search" id="manual" hidden aria-label="国内平台手动搜索"><h2>更多国内平台 · 手动搜索</h2><p>以下入口需在网站内自行确认，不计入发现账号。</p><div class="manual-links" id="manual-links"></div></section><div class="foot">检测结果仅代表网站响应，可能存在误判；相同用户名不代表同一人。打开账号页面后可进一步核实。</div></main><script>
+const $ = id => document.getElementById(id);
+let filter = 'found';
+let snapshot = { rows: [], status: 'idle' };
+let signature = '';
+let manualSignature = '';
+let hasPolled = false;
+const labels = { Claimed: '发现账号', Available: '未发现', Unknown: '连接异常', Illegal: '用户名不适用', WAF: '访问受限' };
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const safeUrl = url => /^https?:\/\//i.test(url);
+
+function render() {
+  const s = snapshot;
+  const rows = s.rows;
+  const found = rows.filter(r => r.status === 'Claimed');
+  const running = s.status === 'running';
+  const outdated = hasPolled && !Array.isArray(s.china_sites);
+  $('checked').firstChild.textContent = rows.length + ' ';
+  $('total').textContent = '/ ' + (s.total || '—');
+  $('found').textContent = found.length;
+  $('status').textContent = ({ idle: '准备就绪', running: s.total ? '正在探索…' : '加载平台列表…', done: '探索完成', stopped: '已停止', error: '搜索遇到问题' })[s.status];
+  $('status').className = running ? 'num spin' : 'num';
+  $('start').disabled = running || outdated || !hasPolled;
+  $('stop').disabled = !running;
+  $('username').disabled = running;
+  $('scope').disabled = running || outdated;
+  $('export').disabled = !rows.length;
+  if (running && s.scope) $('scope').value = s.scope;
+  $('progress').style.width = (s.total ? Math.min(100, rows.length / s.total * 100) : 0) + '%';
+  $('message').textContent = outdated ? '当前服务版本较旧，请双击「启动Sherlock.command」重新打开新版界面。' : s.error || '';
+  const names = s.china_sites || [];
+  $('coverage').textContent = (names.length ? `国内检测 ${names.length} 站：${names.join('、')}。` : '') + '按账号 ID 或主页标识检测，昵称不一定等于用户名。';
+
+  const manual = (s.manual_sites || []).filter(site => safeUrl(site.url));
+  $('manual').hidden = !manual.length;
+  const manualKey = JSON.stringify(manual);
+  if (manualKey !== manualSignature) {
+    manualSignature = manualKey;
+    $('manual-links').innerHTML = manual.map(site => `<a href="${esc(site.url)}" target="_blank" rel="noopener noreferrer">${esc(site.name)} ↗</a>`).join('');
+  }
+
+  const region = $('region').value;
+  const visible = rows.filter(r =>
+    (region === 'all' || r.region === 'china') &&
+    (filter === 'all' || (filter === 'found' ? r.status === 'Claimed' : ['Unknown', 'WAF'].includes(r.status)))
+  );
+  const key = filter + region + s.status + JSON.stringify(visible);
+  if (signature === key) return;
+  signature = key;
+  $('cards').innerHTML = visible.length ? visible.map(r => {
+    const name = r.display_name || r.site;
+    const regionTag = r.region === 'china' ? '<small class="region-tag">中国/中文</small>' : '';
+    const uncertain = ['Unknown', 'WAF'].includes(r.status);
+    const canOpen = safeUrl(r.url) && (r.status === 'Claimed' || uncertain);
+    const linkTitle = uncertain ? '候选主页链接，尚未确认账号存在，请手动核实' : '打开检测到的账号页面';
+    const linkText = uncertain ? '手动核实' : '查看账号';
+    return `<article class="card" title="${esc(r.detail || '')}"><div class="cardhead"><span class="status ${r.status === 'Claimed' ? 'found' : ''}">● ${esc(labels[r.status] || r.status)}</span></div><h3 title="${esc(name)}">${esc(name)}${regionTag}</h3><p title="${esc(r.url)}">${esc(r.url)}</p>${canOpen ? `<a href="${esc(r.url)}" title="${esc(linkTitle)}" target="_blank" rel="noopener noreferrer">${linkText} &nbsp; ↗</a>` : ''}</article>`;
+  }).join('') : `<div class="empty"><div class="glass">⌕</div><h3>${s.status === 'idle' ? '下一条线索，从这里开始' : running ? '正在寻找数字足迹…' : '此分类下暂无结果'}</h3><p>${s.status === 'idle' ? '输入用户名，点击「开始探索」' : running ? '结果会陆续出现在这里，请稍候' : '可切换「全部结果」或地区筛选查看检测详情'}</p></div>`;
+}
+
+async function post(path, data = {}) {
+  const r = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Sherlock-Token': '__TOKEN__' }, body: JSON.stringify(data) });
+  const body = await r.json();
+  if (!r.ok) throw Error(body.error);
+  await poll();
+}
+
+$('form').onsubmit = async e => {
+  e.preventDefault();
+  if (!hasPolled || !Array.isArray(snapshot.china_sites)) return;
+  $('start').disabled = true;
+  try {
+    await post('/api/start', { username: $('username').value, timeout: $('timeout').value, scope: $('scope').value });
+  } catch (e) {
+    $('message').textContent = e.message;
+    $('start').disabled = false;
+  }
+};
+$('stop').onclick = () => post('/api/stop').catch(e => $('message').textContent = e.message);
+document.querySelectorAll('[data-filter]').forEach(b => b.onclick = () => {
+  filter = b.dataset.filter;
+  document.querySelectorAll('[data-filter]').forEach(x => x.classList.toggle('active', x === b));
+  render();
+});
+$('region').onchange = render;
+$('export').onclick = async () => {
+  try {
+    const r = await fetch('/api/export');
+    if (!r.ok) throw Error('导出失败');
+    const u = URL.createObjectURL(await r.blob());
+    const a = document.createElement('a');
+    a.href = u;
+    a.download = 'Sherlock-results.xlsx';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(u), 1000);
+  } catch (e) { $('message').textContent = e.message; }
+};
+async function poll() {
+  try {
+    const r = await fetch('/api/state');
+    if (!r.ok) throw Error();
+    snapshot = await r.json();
+    hasPolled = true;
+    render();
+  } catch (e) { $('message').textContent = '本地服务未连接，请重新双击启动 Sherlock。'; }
+}
+render();
+poll();
+setInterval(poll, 1000);
+</script></html>
